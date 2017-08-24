@@ -5,7 +5,9 @@ Created on Wed Aug 23 20:31:59 2017
 @author: Gabriel PC
 """
 
-#A* blind proyect
+#A* blind project
+#language: Python 3.x
+
 
 import numpy as np
 
@@ -23,6 +25,14 @@ class graph:
     def define_entropy(self,array): #Let us add an entropy mapping
         self.entropy = array
         pass
+    
+    def get_entropy(self, x,y):
+        answer = 9999 #in case there's no possible way to reach
+        for i in range(0,np.size(self.entropy)):
+            if self.entropy[i][0] == x and self.entropy[i][1] == y:
+                answer = entropy[i][2]
+        
+        return answer 
     
     def add(self,x):
         self.data.append(x)
@@ -47,15 +57,29 @@ class graph:
         if valid == False:
             print("Don't exist")
             pass
-        temp = [a,b,size]
+        temp = [a,b,size,0] #first, second, lenght, non-visited
         self.mapping.append(temp)
 
+    def exist(self,array,x):
+        answer = False
+        for i in range(0,np.size(array)):
+            if array[i] == x:
+                answer = True          
+        return answer
+    
     def pathfinding(self,a,b):
-        entry = []
+        father = 0;
+        first = [a,self.get_entropy(a,b),father] #id, cost, id_father
+        entry = [a]
         visited = []
         path_finded = False
         while path_finded == False:
-            None #temp data
+            for i in range(0, np.size(self.entropy)):
+                if self.entropy[i][0] == a:
+                    temp = self.exist(visited,a)
+                    if temp == False:
+                        cost = self.get_entropy(a,b) + father
+                        data = [self.entropy[i][1], cost, self.entropy[i][0]]
     pass
 
 
