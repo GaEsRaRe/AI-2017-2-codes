@@ -53,6 +53,9 @@ def check_all(array): #insert an array of fathers
     return answer
 
 def selection(array):
-    
-    
+    solution = 0
+    size = np.size(array)
+    best_case = size*(size-1)
+    while(False):
+        None
     pass
