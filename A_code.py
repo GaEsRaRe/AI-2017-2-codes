@@ -20,17 +20,17 @@ class node: #Easy to mod node
 class graph:
     data = [] #includes every node
     mapping = [] #include of paths
-    entropy = [] # (a,e,lenght) is a basic lineal distance between two points given as data
+    heuristic = [] # (a,e,lenght) is a basic lineal distance between two points given as data
     
-    def define_entropy(self,array): #Let us add an entropy mapping
-        self.entropy = array
+    def define_heuristic(self,array): #Let us add an heuristic mapping
+        self.heuristic = array
         pass
     
-    def get_entropy(self, x,y):
+    def get_heuristic(self, x,y):
         answer = 9999 #in case there's no possible way to reach
-        for i in range(0,np.size(self.entropy)):
-            if self.entropy[i][0] == x and self.entropy[i][1] == y:
-                answer = entropy[i][2]
+        for i in range(0,np.size(self.heuristic)):
+            if self.heuristic[i][0] == x and self.heuristic[i][1] == y:
+                answer = heuristic[i][2]
         
         return answer 
     
@@ -69,17 +69,17 @@ class graph:
     
     def pathfinding(self,a,b):
         father = 0;
-        first = [a,self.get_entropy(a,b),father] #id, cost, id_father
+        first = [a,self.get_heuristic(a,b),father] #id, cost, id_father
         entry = [a]
         visited = []
         path_finded = False
         while path_finded == False:
-            for i in range(0, np.size(self.entropy)):
-                if self.entropy[i][0] == a:
+            for i in range(0, np.size(self.heuristic)):
+                if self.heuristic[i][0] == a:
                     temp = self.exist(visited,a)
                     if temp == False:
-                        cost = self.get_entropy(a,b) + father
-                        data = [self.entropy[i][1], cost, self.entropy[i][0]]
+                        cost = self.get_heuristic(a,b) + father
+                        data = [self.heuristic[i][1], cost, self.heuristic[i][0]]
     pass
 
 
