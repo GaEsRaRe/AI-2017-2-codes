@@ -14,6 +14,8 @@ father2 = [5,6,8,3,2,5,3,7]
 father3 = [4,8,3,5,7,7,1,6]
 father4 = [8,8,2,6,4,7,1,3]
 
+fathers = [father1,father2,father3,father4]
+
 #let us get a number of pairs that don't collide based on an array
 
 def review(array):
@@ -30,9 +32,9 @@ def review(array):
         if array[i] == (array[z] -(z -i)):
               if i < z:
                    solution = solution + 2
-                   print("posicion: ",i+1," valor: ",array[i])
-                   print("posicion: ",z+1," valor: ",array[z])
-                   print("")
+                   #print("posicion: ",i+1," valor: ",array[i])
+                   #print("posicion: ",z+1," valor: ",array[z])
+                   #print("")
         if array[i] == (array[z] + z - i):
               if i < z:
                    solution = solution + 2
@@ -42,3 +44,15 @@ def review(array):
                    
     return (best_case-solution)/2
     
+def check_all(array): #insert an array of fathers
+    f_size = len(array)
+    answer = [] #an array to contain an array with the next info [array,non-connected-queens]
+    for i in range(0,f_size):
+         temp = [array[i],review(array[i])]
+         answer.append(temp)
+    return answer
+
+def selection(array):
+    
+    
+    pass
