@@ -56,24 +56,21 @@ def partial_review(array,n):
         if array[i] == array[z]:
                if i < z:
                    solution = solution + 2
-                   #print("Recta posicion: ",i+1," valor: ",array[i])
-                   #print("Recta posicion: ",z+1," valor: ",array[z])
         if array[i] == (array[z] -(z -i)):
               if i < z:
                    solution = solution + 2
-                   #print("posicion: ",i+1," valor: ",array[i])
-                   #print("posicion: ",z+1," valor: ",array[z])
-                   #print("")
         if array[i] == (array[z] + z - i):
               if i < z:
                    solution = solution + 2
-                   #print("DS posicion: ",i+1," valor: ",array[i])
-                   #print("DS posicion: ",z+1," valor: ",array[z])
-                   #print("")
-                   
     return (best_case - solution)/2
 
 
+
+def morph(array):
+    answer = array
+    answer[rd.randrange(0,8)] = rd.randrange(0,8)
+    
+    return answer
     
 def check_all(array): #insert an array of fathers
     f_size = len(array)
@@ -85,32 +82,35 @@ def check_all(array): #insert an array of fathers
 
 def mixing(array): #a sorted list of chances
     mixed = []
-    size = np.size(array,0)
-    length = np.size(array[:][:])
-    #let's get the seed
+    #size = np.size(array,0)
+    #length = np.size(array[:][:])
     #print(length)
-    cut_at = rd.randrange(1,length)
-   # print(cut_at)
-    temp = array[2][0][:cut_at] + array[3][0][cut_at:]
+    #cut_at = rd.randrange(1,length)
+    temp = array[0][0][:3] + array[1][0][3:]
+    temp = morph(temp)
     mixed.append(temp)
-    print(size)
-    for i in range(0,size-1):
-        temp = array[i+1][0][:cut_at] + array[i][0][cut_at:]
-        #print(temp)
-        mixed.append(temp)
+    temp = array[1][0][:3] + array[0][0][3:]
+    temp = morph(temp)
+    mixed.append(temp)
+    temp = array[1][0][:5] + array[2][0][5:]
+    temp = morph(temp)
+    mixed.append(temp)
+    temp = array[1][0][:5] + array[2][0][5:]
+    temp = morph(temp)
+    mixed.append(temp)
     mixed = check_all(mixed)
     print(mixed)
     return mixed 
 
 def selection(array):
-    solution = 0
-    unsolved = True
+    #solution = 0
+    #unsolved = True
     size = np.size(array)
     best_case = size*(size-1)
     actual_family = check_all(array) #we run first 
     print(actual_family)
-   # while(actual_family[0][1] < best_case):
-    #      actual_family = mixing(actual_family)
-     #     print(actual_family[0][1])
-    #print(actual_family)
+    while(actual_family[0][1] < best_case):
+          actual_family = mixing(actual_family)
+          print(actual_family[0][1])
+    print(actual_family)
     pass
